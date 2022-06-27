@@ -6,6 +6,11 @@ Talk to gpt-3 through discord!
 
 ### Setup
 
+Install dependencies
+```
+npm ci
+```
+
 create a `.env` file with the following information:
 
 ```
