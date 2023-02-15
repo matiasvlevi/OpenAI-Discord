@@ -7,19 +7,21 @@ Talk to gpt-3 through discord!
 ### Setup
 
 Install dependencies
+
 ```
-npm ci
+npm install
 ```
 
 create a `.env` file with the following information:
 
 ```
-LOG_PATH=/path/to/logs
+LOG_PATH=path/to/logs
 
 OPENAI_TOKEN=YOUR_API_KEY
 DISCORD_TOKEN=YOUR_DISCORD_APP_KEY
 
 AI_NAME=AI
+HUMAN_NAME=Human
 
 GPT_TEMPERATURE=0.7
 GPT_PRESENCE_PENALITY=0.3
@@ -32,6 +34,8 @@ you can add a context to the conversation by adding
 CONTEXT="AI is sarcastic"
 ```
 
+finally, make sure to enable the message content intent in your Discord bot's settings on the Discord developer portal
+
 <br/>
 
 ### Run
@@ -39,4 +43,3 @@ CONTEXT="AI is sarcastic"
 ```
 npm run start
 ```
-
