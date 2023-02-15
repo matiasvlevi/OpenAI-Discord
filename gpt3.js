@@ -15,7 +15,7 @@ const fromConvo = (username, text) => text.split(`\n${username}:`)[0];
 
 module.exports = async function(username, message, parse=toConvo) {
     const gptResponse = await openai.complete({
-        engine: 'davinci',
+        engine: 'text-davinci-002',
         prompt: parse(username, message),
         maxTokens: 256,
         temperature: parseFloat(GPT_TEMPERATURE),
