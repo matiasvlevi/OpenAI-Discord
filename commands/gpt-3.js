@@ -14,9 +14,9 @@ module.exports = {
         ),
     async execute(interaction) {
         const prompt = interaction.options.getString("prompt");
-		const userUsername = interaction.user.username;
-		const userId = interaction.user.id;
-		const botUsername = interaction.client.user.username;
+        const userUsername = interaction.user.username;
+        const userId = interaction.user.id;
+        const botUsername = interaction.client.user.username;
         
         await interaction.deferReply();
 
