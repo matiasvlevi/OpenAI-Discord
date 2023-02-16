@@ -1,33 +1,53 @@
-const { Client, Intents } = require('discord.js');
-const {DISCORD_TOKEN} = require('./config.js');
-const gpt3 = require('./gpt3.js');
-const logger = require('./logger.js');
+const { DISCORD_TOKEN } = require("./config.js");
+const fs = require("node:fs");
+const path = require("node:path");
+// Require the necessary discord.js classes
+const { Client, Collection, GatewayIntentBits } = require("discord.js");
 
-const isBot = (author, bot) => (author.username === bot.user.username);
-
-// Create discord bot
-const bot = new Client({
-    intents: [Intents.FLAGS.GUILDS] 
+// Create a new client instance
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.GuildMessages, 
+        GatewayIntentBits.MessageContent
+    ] 
 });
 
-// Bot login event
-let bot_name;
-bot.on('ready', async () => {
-    logger.login(bot.user.tag);
-    bot_name = bot.user.username;
-});
+// ======== Accessing Commands files ========
+client.commands = new Collection();
 
-// Bot message event
-bot.on('message', async (msg)=>{
-    if (isBot(msg.author, bot)) return;
+const commandsPath = path.join(__dirname, "commands");
+const commandFiles = fs
+    .readdirSync(commandsPath)
+    .filter((file) => file.endsWith(".js"));
 
-    const gptResponse = await gpt3(msg.author.username, msg.content);
-    if (gptResponse.length == 0) gptResponse = '...';
+for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+    // Set a new item in the Collection with the key as the command name and the value as the exported module
+    if ("data" in command && "execute" in command) {
+        client.commands.set(command.data.name, command);
+    } else {
+        console.log(
+            `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+        );
+    }
+}
 
-    logger.message(msg.author.username, msg.content);
-    logger.message(bot_name, gptResponse);        
+// ======== Accessing Events files ========
+const eventsPath = path.join(__dirname, "events");
+const eventFiles = fs
+    .readdirSync(eventsPath)
+    .filter((file) => file.endsWith(".js"));
 
-    msg.channel.send(gptResponse);
-})
+for (const file of eventFiles) {
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
+    }
+}
 
-bot.login(DISCORD_TOKEN);
+client.login(DISCORD_TOKEN);

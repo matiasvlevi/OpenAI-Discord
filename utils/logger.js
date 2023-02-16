@@ -1,8 +1,7 @@
-const {appendFileSync} = require('fs');
-const {LOG_PATH} = require('./config.js');
+const { appendFileSync } = require('fs');
+const { LOG_PATH } = require('../config.js');
 
 class Logger {
-    constructor() {}
     static time() {
         const time = new Date();
         return `${time.getHours()}:${time.getMinutes()}`

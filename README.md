@@ -1,6 +1,6 @@
 # GPT-3 Discord bot
 
-Talk to gpt-3 through discord!
+Talk to gpt-3 through discord! This bot uses the [OpenAI API](https://openai.com/) to generate text from a prompt.
 
 <br/>
 
@@ -19,6 +19,7 @@ LOG_PATH=path/to/logs
 
 OPENAI_TOKEN=YOUR_API_KEY
 DISCORD_TOKEN=YOUR_DISCORD_APP_KEY
+DISCORD_CLIENT_ID=YOUR_DISCORD_CLIENT_ID
 
 AI_NAME=AI
 
@@ -36,12 +37,25 @@ you can add a context to the conversation by adding
 CONTEXT="AI is sarcastic"
 ```
 
-finally, make sure to enable the message content intent in your Discord bot's settings on the Discord developer portal
+then, run `npm run deploy` to deploy the discord bot commands
+
+next, make sure to enable the message content intent in your Discord bot's settings on the Discord developer portal
+
+finally, run `npm run start` to start the bot
 
 <br/>
 
-### Run
+### NPM Scripts
 
 ```
-npm run start
+npm run deploy # to deploy discord commands
+npm run start # to start the bot
+```
+
+<br/>
+
+### Usage
+
+```
+/gpt-3 <prompt>
 ```
