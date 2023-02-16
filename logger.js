@@ -2,13 +2,13 @@ const {appendFileSync} = require('fs');
 const {LOG_PATH} = require('./config.js');
 
 class Logger {
-    constructor() {}   
+    constructor() {}
     static time() {
-        let time = new Date();
+        const time = new Date();
         return `${time.getHours()}:${time.getMinutes()}`
     }
     static date() {
-        let date = new Date();
+        const date = new Date();
         return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     }
     log(content) {

@@ -1,6 +1,6 @@
 const { Client, Intents } = require('discord.js');
 const {DISCORD_TOKEN} = require('./config.js');
-const GPT3 = require('./gpt3.js');
+const gpt3 = require('./gpt3.js');
 const logger = require('./logger.js');
 
 const isBot = (author, bot) => (author.username === bot.user.username);
@@ -21,7 +21,7 @@ bot.on('ready', async () => {
 bot.on('message', async (msg)=>{
     if (isBot(msg.author, bot)) return;
 
-    let gptResponse = await GPT3(msg.author.username, msg.content);
+    const gptResponse = await gpt3(msg.author.username, msg.content);
     if (gptResponse.length == 0) gptResponse = '...';
 
     logger.message(msg.author.username, msg.content);
