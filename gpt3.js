@@ -3,10 +3,10 @@ const {
     OPENAI_TOKEN,
     AI_NAME,
     CONTEXT,
-	GPT_ENGINE,
-	GPT_MAX_TOKENS,
+    GPT_ENGINE,
+    GPT_MAX_TOKENS,
     GPT_TEMPERATURE,
-	GPT_TOP_P,
+    GPT_TOP_P,
     GPT_PRESENCE_PENALITY,
     GPT_FREQUENCY_PENALITY,
 } = require('./config.js');
