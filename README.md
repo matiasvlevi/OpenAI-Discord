@@ -39,8 +39,6 @@ CONTEXT="AI is sarcastic"
 
 then, run `npm run deploy` to deploy the discord bot commands
 
-next, make sure to enable the message content intent in your Discord bot's settings on the Discord developer portal
-
 finally, run `npm run start` to start the bot
 
 <br/>
