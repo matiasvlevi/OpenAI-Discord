@@ -29,6 +29,11 @@ GPT_TEMPERATURE=0.3
 GPT_TOP_P=0.9
 GPT_PRESENCE_PENALITY=0.3
 GPT_FREQUENCY_PENALITY=0.6
+
+# true if you want to reply to all messages sent in discord server
+# to use, make sure to have message content intent enabled in your discord app
+REPLY_TO_ALL=false
+```
 ```
 
 you can add a context to the conversation by adding
