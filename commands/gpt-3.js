@@ -27,7 +27,7 @@ module.exports = {
         logger.message(botUsername, gptResponse);
 
         if (gptResponse.length == 0) {
-            await interaction.editReply("I don't know what to say :(");
+            await interaction.editReply("...");
         } else {
             await interaction.editReply(
                 `> <@${userId}>: ${prompt}\n\n${gptResponse}`
