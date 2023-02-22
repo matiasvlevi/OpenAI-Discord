@@ -1,6 +1,6 @@
-# GPT-3 Discord bot
+# OpenAi Discord bot
 
-Talk to gpt-3 through discord! This bot uses the [OpenAI API](https://openai.com/) to generate text from a prompt.
+Talk to GPT-3 and generate images with DALL-E through discord! This bot uses the [OpenAI API](https://openai.com/) to generate text and images from a prompt.
 
 <br/>
 
@@ -29,6 +29,10 @@ GPT_TEMPERATURE=0.3
 GPT_TOP_P=0.9
 GPT_PRESENCE_PENALITY=0.3
 GPT_FREQUENCY_PENALITY=0.6
+
+# true if you want to reply to all messages sent in discord server
+# to use, make sure to have message content intent enabled in your discord app
+REPLY_TO_ALL=false
 ```
 
 you can add a context to the conversation by adding
@@ -46,6 +50,7 @@ finally, run `npm run start` to start the bot
 ### NPM Scripts
 
 ```
+npm install # to install dependencies
 npm run deploy # to deploy discord commands
 npm run start # to start the bot
 ```
@@ -56,4 +61,5 @@ npm run start # to start the bot
 
 ```
 /gpt-3 <prompt>
+/dalle <prompt>
 ```
